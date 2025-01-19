@@ -13,7 +13,7 @@ document.querySelectorAll(".nav-links").forEach(n => n.addEventListener("click",
 
 // typing Animation
 var typed = new Typed('#typed', {
-    strings: ['Backend Developer.', 'Python Developer.', 'Data Analyst.'],
+    strings: ['Backend Developer.', 'Python Developer.'],
     typeSpeed: 100,
     backDelay: 2000,
     loop: true
