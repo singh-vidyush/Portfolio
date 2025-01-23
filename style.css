@@ -733,9 +733,11 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .hide {
+  .hide,
+  .scroll-container {
     display: none;
   }
+
 }
 
 /* --------------------------------------------------------------------------------- */
@@ -842,4 +844,76 @@ footer {
 @keyframes scroll {
   0% {transform: translateX(0);}
   100% {transform: translatex(-1000%)}
+}
+
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Enable body scroll */
+body {
+  overflow: auto; /* Allow scrolling */
+}
+
+.scroll-container {
+  position: relative;
+  height: 200px; /* Optional: Adjust based on your layout */
+  overflow: hidden; /* Keep carousel confined */
+}
+
+.carousel-primary,
+.carousel-secondary {
+  top: 26%;
+  left: 100%;
+  width: 100%;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.carousel-primary img,
+.carousel-secondary img {
+  width: 80px; /* Set a smaller width */
+  height: auto; /* Maintain aspect ratio */
+  margin-left: 20px; /* Keep spacing between images */
+  border-radius: 4px;
+}
+
+.carousel-primary {
+  display: flex;
+  justify-content: space-around;
+  animation: scroll-horizontal 20s linear infinite;
+}
+
+.carousel-secondary {
+  animation: scroll-horizontal 20s linear infinite;
+  animation-delay: 10s;
+}
+
+@keyframes scroll-horizontal {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+.carousel-primary:hover,
+.carousel-primary:hover ~ .carousel-secondary {
+  animation-play-state: paused;
+}
+
+.carousel-secondary:hover {
+  animation-play-state: paused;
+}
+
+.scroll-container:hover > .carousel-primary:not(:hover) {
+  animation-play-state: paused;
 }
